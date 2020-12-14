@@ -1,0 +1,2 @@
+# Eksempel på bruk av token
+I eksempelet henter først token fra [Ambita sin authentiseringstjeneste](https://ambita.atlassian.net/l/c/HLBbRG4c). Token'et benyttes deretter i et kall mot [etinglysing]((https://ambita.atlassian.net/l/c/j3di9tHF)) soap api og deretter mot [eps](https://ambita.atlassian.net/l/c/d514oB8J) rest api.
