@@ -1,4 +1,4 @@
-# Tinglysing og samhandling (ToS) eksempelkode
+# Tinglysing og samhandling eksempelkode
 Et repository som innholder eksempelkode som bruker Ambita sine API-er med hovedvekt på tinglysing og samhandling.
 
 ## Enkle skripteksempler
