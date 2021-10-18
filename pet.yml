@@ -1,0 +1,90 @@
+openapi: 3.0.1
+info:
+  title: Polymorphic List Sample
+  version: "1.0.0-oas3"
+servers:
+  - url: 'https://localhost'
+paths:
+  /feeds:
+    get:
+      tags:
+        - News
+      summary: Result array contains any of the specified types
+      operationId: getMsnFeeds
+      parameters:
+        - name: query
+          in: query
+          description: 'Get '
+          schema:
+            type: string
+      responses:
+        '200':
+          description: List of compositeCards
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PetResponse'
+components:
+  schemas:
+    PetResponse:
+      type: object
+      properties:
+        result:
+          type: array
+          items:
+            # Actually PetResponse has an Pet type array to support Polymorphism, but it is overridden by the extended class types
+            oneOf:
+              - $ref: '#/components/schemas/Cat'
+              - $ref: '#/components/schemas/Dog'
+              - $ref: '#/components/schemas/Lizard'
+          discriminator:
+            propertyName: pet_type
+        message:
+          type: string
+    Lizard:
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            lovesRocks:
+              type: boolean
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
+        petType:
+          type: string
+      required:
+        - name
+        - petType
+    Cat:
+      description: A representation of a cat
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            huntingSkill:
+              type: string
+              description: The measured skill for hunting
+              enum:
+                - clueless
+                - lazy
+                - adventurous
+                - aggressive
+          required:
+            - huntingSkill
+    Dog:
+      description: A representation of a dog
+      allOf:
+        - $ref: '#/components/schemas/Pet'
+        - type: object
+          properties:
+            packSize:
+              type: integer
+              format: int32
+              description: the size of the pack the dog is from
+              default: 0
+              minimum: 0
+          required:
+            - packSize
