@@ -4129,7 +4129,6 @@
 "mapping": {
 "COOPRATIVE": "#/components/schemas/CooperativeRealEstateDto",
 "STOCK": "#/components/schemas/StockRealEstateDto",
-"BOND": "#/components/schemas/RealEstate",
 "OWNED": "#/components/schemas/MatrikkelRealEstateDto",
 "CONDOMINIUM": "#/components/schemas/MatrikkelRealEstateDto"
 }
